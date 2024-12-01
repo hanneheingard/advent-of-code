@@ -1,4 +1,4 @@
-print("Day1 challenge: start")
+print("Day1 challenge 1/2: start")
 
 leftlist = []
 rightlist = []
