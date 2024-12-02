@@ -1,4 +1,4 @@
-print("Day2 challenge 1/2: start")
+print("Day2 challenge 2/2: start")
 
 antalSafeReports = 0
 
@@ -29,6 +29,7 @@ with open("input.txt", "r") as file:
         if indexOfUnsafe == -1:
             antalSafeReports +=1
         else:
+            #Remove one element at a time from the list, and thereafter check if it is now safe
             for index, value in enumerate(report):
                 templist = report[:]
                 del templist[index]
