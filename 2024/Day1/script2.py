@@ -12,12 +12,14 @@ with open("input.txt", "r") as file:
 totalSum = 0
 
 rightMap = {}
+#Check how many times a number is represented in right list
 for key in rightlist:
     if key in rightMap:
         rightMap[key] += 1
     else:
         rightMap[key] = 1
 
+#Check how many times a left entry appears in right list
 for leftEntry in leftlist:
     if leftEntry in rightMap:
         antalIRight = rightMap[leftEntry]
