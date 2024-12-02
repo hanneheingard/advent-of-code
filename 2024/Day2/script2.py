@@ -4,15 +4,18 @@ antalSafeReports = 0
 
 def isReportSafe(report):
     decreasing = report[0] - report[1] > 0
-    if not decreasing:
-        report.reverse()
-
-    for index, value in enumerate(report[:-1]):
-        diff = report[index] - report[index + 1]
-        safe = 0 < diff < 4
-
-        if not safe:
-            return index
+    if decreasing:
+        for index, value in enumerate(report[:-1]):
+            diff = report[index] - report[index + 1]
+            safe = 0 < diff < 4
+            if not safe:
+                return index
+    else:
+        for index, value in enumerate(report[:-1]):
+            diff = report[index + 1] - report[index]
+            safe = 0 < diff < 4
+            if not safe:
+                return index
 
     return -1
 
@@ -22,14 +25,15 @@ with open("input.txt", "r") as file:
         report = []
         for num in line.split():
             report.append(int(num))
-
         indexOfUnsafe = isReportSafe(report)
         if indexOfUnsafe == -1:
             antalSafeReports +=1
         else:
-            del report[indexOfUnsafe]
-            if isReportSafe(report) == -1:
-                antalSafeReports +=1
-
+            for index, value in enumerate(report):
+                templist = report[:]
+                del templist[index]
+                if isReportSafe(templist) == -1:
+                    antalSafeReports +=1
+                    break
 
     print(antalSafeReports)
